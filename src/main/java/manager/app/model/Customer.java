@@ -1,5 +1,7 @@
 package manager.app.model;
 
+import manager.app.data.CustomerIdSequencer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,8 @@ public class Customer {
     private String email;
     private final List<BankAccount> bankAccountList;
 
-    public Customer(int id, String firstName, String lastName, String email) {
-        this.id = id;
+    public Customer(String firstName, String lastName, String email) {
+        this.id = CustomerIdSequencer.nextCustomerId();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

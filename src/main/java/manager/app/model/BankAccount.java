@@ -1,12 +1,14 @@
 package manager.app.model;
 
+import manager.app.data.AccountNumberSequencer;
+
 public class BankAccount {
     private final int accountNumber;
     private final int customerId;
     private double balance;
 
-    public BankAccount(int accountNumber, int customerId, double balance) {
-        this.accountNumber = accountNumber;
+    public BankAccount(int customerId, double balance) {
+        this.accountNumber = AccountNumberSequencer.nextAccountNumber();
         this.customerId = customerId;
         this.balance = balance;
     }

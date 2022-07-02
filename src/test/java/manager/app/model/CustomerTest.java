@@ -7,16 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import manager.app.data.CustomerIdSequencer;
 
 class CustomerTest {
+
     @Test
     void should_Construct_A_Customer_Object_With_Expected_Fields() {
         //Arrange
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
+        int customerId = CustomerIdSequencer.readId();
 
         //Assert
         assertAll(
@@ -30,13 +31,13 @@ class CustomerTest {
     @Test
     void should_Return_Customer_Id() {
         //Arrange
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
+        int customerId = CustomerIdSequencer.readId();
 
         //Assert
         assertEquals(customerId, customer.getId());
@@ -44,13 +45,13 @@ class CustomerTest {
 
     @Test
     void should_Return_Customer_FirstName() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
+        int customerId = CustomerIdSequencer.readId();
 
         //Assert
         assertEquals(firstName, customer.getFirstName());
@@ -58,7 +59,6 @@ class CustomerTest {
 
     @Test
     void should_Set_Customer_FirstName() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
@@ -66,7 +66,7 @@ class CustomerTest {
         String expectedFirstName = "Norah";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
         customer.setFirstName(expectedFirstName);
 
         //Assert
@@ -75,13 +75,12 @@ class CustomerTest {
 
     @Test
     void should_Return_Customer_LastName() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
 
         //Assert
         assertEquals(lastName, customer.getLastName());
@@ -89,7 +88,6 @@ class CustomerTest {
 
     @Test
     void should_Set_Customer_LastName() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
@@ -97,7 +95,7 @@ class CustomerTest {
         String expectedLastName = "Norah";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
         customer.setLastName(expectedLastName);
 
         //Assert
@@ -106,13 +104,12 @@ class CustomerTest {
 
     @Test
     void should_Return_Customer_Email() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
 
         //Assert
         assertEquals(email, customer.getEmail());
@@ -120,7 +117,6 @@ class CustomerTest {
 
     @Test
     void should_Set_Customer_Email() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
@@ -128,7 +124,7 @@ class CustomerTest {
         String expectedEmail = "newEmail@email.com";
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
         customer.setEmail(expectedEmail);
 
         //Assert
@@ -137,7 +133,6 @@ class CustomerTest {
 
     @Test
     void should_Return_Customer_AccountList() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
@@ -145,7 +140,7 @@ class CustomerTest {
         List<BankAccount> expectedAccountList = new ArrayList<>();
 
         //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
+        Customer customer = new Customer(firstName, lastName, email);
 
         //Assert
         assertEquals(expectedAccountList, customer.getBankAccountList());
