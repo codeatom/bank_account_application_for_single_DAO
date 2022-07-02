@@ -1,65 +1,66 @@
 package manager.app.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
-        private final int id;
-        private String firstName;
-        private String lastName;
-        private String email;
-        private int accountNumber;
+    private final int id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private final List<BankAccount> bankAccountList;
 
-        public Customer(int id, String firstName, String lastName, String email) {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-        }
+    public Customer(int id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
 
-        public int getId() {
-            return id;
-        }
+        bankAccountList = new ArrayList<>();
+    }
 
-        public String getFirstName() {
-            return firstName;
-        }
+    public int getId() {
+        return id;
+    }
 
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
+    public String getFirstName() {
+        return firstName;
+    }
 
-        public String getLastName() {
-            return lastName;
-        }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
+    public String getLastName() {
+        return lastName;
+    }
 
-        public String getEmail() {
-            return email;
-        }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-        public void setEmail(String email) {
-            this.email = email;
-        }
+    public String getEmail() {
+        return email;
+    }
 
-        public int getAccountNumber() {
-            return accountNumber;
-        }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-        public void setAccountNumber(int accountNumber) {
-            this.accountNumber = accountNumber;
-        }
+    public List<BankAccount> getBankAccountList() {
+        return bankAccountList;
+    }
 
-        public String getCustomerInformation(){
-            return  "id: " + this.id +"\n"
-                    + "First Name: " + this.firstName +"\n"
-                    + "Last Name: " + this.lastName +"\n"
-                    + "email: " + this.email +"\n"
-                    + "accountNumber: " + accountNumber;
-        }
+    public String getCustomerInformation(){
+        return  "id: " + this.id +"\n"
+                + "First Name: " + this.firstName +"\n"
+                + "Last Name: " + this.lastName +"\n"
+                + "email: " + this.email +"\n";
+    }
 
-       @Override
-       public String toString() {
+    @Override
+    public String toString() {
         return getCustomerInformation();
-       }
+    }
+
 }

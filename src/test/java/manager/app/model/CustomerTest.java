@@ -1,8 +1,10 @@
 package manager.app.model;
 
-import manager.app.data.CustomerIdSequencer;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import manager.app.data.CustomerIdSequencer;
 
 class CustomerTest {
     @Test
@@ -23,7 +25,6 @@ class CustomerTest {
                 () -> assertEquals(lastName, customer.getLastName()),
                 () -> assertEquals(email, customer.getEmail())
         );
-
     }
 
     @Test
@@ -135,37 +136,19 @@ class CustomerTest {
     }
 
     @Test
-    void should_Return_Customer_AccountNumber() {
+    void should_Return_Customer_AccountList() {
         int customerId = CustomerIdSequencer.nextCustomerId();
         String firstName = "Chris";
         String lastName = "Lucky";
         String email = "cl@email.com";
-        int accountNumber = 1;
+
+        List<BankAccount> expectedAccountList = new ArrayList<>();
 
         //Act
         Customer customer = new Customer(customerId, firstName, lastName, email);
-        customer.setAccountNumber(accountNumber);
 
         //Assert
-        assertEquals(accountNumber, customer.getAccountNumber());
-    }
-
-    @Test
-    void should_Set_Customer_AccountNumber() {
-        int customerId = CustomerIdSequencer.nextCustomerId();
-        String firstName = "Chris";
-        String lastName = "Lucky";
-        String email = "cl@email.com";
-        int accountNumber = 1;
-
-        int expectedAccNumber = 3;
-
-        //Act
-        Customer customer = new Customer(customerId, firstName, lastName, email);
-        customer.setAccountNumber(expectedAccNumber);
-
-        //Assert
-        assertEquals(expectedAccNumber, customer.getAccountNumber());
+        assertEquals(expectedAccountList, customer.getBankAccountList());
     }
 
 }
