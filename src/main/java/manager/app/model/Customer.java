@@ -65,4 +65,7 @@ public class Customer {
         return getCustomerInformation();
     }
 
+    public boolean addAccountToList(BankAccount account){
+        return this.bankAccountList.add(account);
+    }
 }

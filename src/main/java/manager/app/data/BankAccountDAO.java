@@ -1,10 +1,7 @@
 package manager.app.data;
 
 import manager.app.model.BankAccount;
-import manager.app.model.Customer;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BankAccountDAO {
