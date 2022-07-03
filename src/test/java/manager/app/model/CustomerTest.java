@@ -17,7 +17,7 @@ class CustomerTest {
 
         //Act
         Customer customer = new Customer(firstName, lastName, email);
-        int customerId = CustomerIdSequencer.readId();
+        int customerId = CustomerIdSequencer.readCustomerId();
 
         //Assert
         assertAll(
@@ -37,7 +37,7 @@ class CustomerTest {
 
         //Act
         Customer customer = new Customer(firstName, lastName, email);
-        int customerId = CustomerIdSequencer.readId();
+        int customerId = CustomerIdSequencer.readCustomerId();
 
         //Assert
         assertEquals(customerId, customer.getId());
@@ -51,7 +51,7 @@ class CustomerTest {
 
         //Act
         Customer customer = new Customer(firstName, lastName, email);
-        int customerId = CustomerIdSequencer.readId();
+        int customerId = CustomerIdSequencer.readCustomerId();
 
         //Assert
         assertEquals(firstName, customer.getFirstName());
@@ -146,4 +146,22 @@ class CustomerTest {
         assertEquals(expectedAccountList, customer.getBankAccountList());
     }
 
+    @Test
+    void should_Add_Bank_Account_To_Customer_AccountList() {
+        String firstName = "Chris";
+        String lastName = "Lucky";
+        String email = "cl@email.com";
+
+        int customerId = 1;
+        double accountBalance = 10;
+
+        //Act
+        Customer customer = new Customer(firstName, lastName, email);
+        BankAccount bankAccount = new BankAccount(customerId, accountBalance);
+
+        boolean accountAdded = customer.addAccountToList(bankAccount);
+
+        //Assert
+        assertTrue(accountAdded);
+    }
 }

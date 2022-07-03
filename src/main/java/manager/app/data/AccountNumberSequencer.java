@@ -1,17 +1,23 @@
 package manager.app.data;
 
 public class AccountNumberSequencer {
-    private static int accountNumber = 0;
+    private static final int bankBranchNumber = 10000;
+
+    private static int accountNumber = bankBranchNumber;
+
+    public static int readBankBranchNumber() {
+        return bankBranchNumber;
+    }
 
     public static int readAccountNumber() {
         return accountNumber;
     }
 
     public static int nextAccountNumber(){
-        return ++accountNumber;
+        return  ++accountNumber;
     }
 
-    public static void resetNumber(){
-        accountNumber = 0;
+    public static int resetAccountNumber(){
+        return accountNumber = 0;
     }
 }

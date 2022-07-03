@@ -11,29 +11,29 @@ class BankAccountDAOTest {
 
     @BeforeEach
     void setup(){
-        AccountNumberSequencer.resetNumber();
-        CustomerIdSequencer.resetId();
+        AccountNumberSequencer.resetAccountNumber();
+        CustomerIdSequencer.resetCustomerId();
         CustomerDAO.resetCustomerList();
         CustomerDAO.resetcustomerEmailList();
         BankAccountDAO.resetBankAccountList();
     }
 
     @Test
-    void should_Create_A_CreateCustomer() {
+    void should_Create_A_Bank_Account() {
         //Arrange
-        int customerId = 0;
-        double balance = 1;
+        double balance = 30;
 
         //Act
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-        bankAccountDAO.createBankAccount(customerId, balance);
+        Customer customer = new Customer("Christopher", "Lucky", "cl@email.com");
+        BankAccountDAO.createBankAccount(customer, balance);
 
-        int accountNumber = AccountNumberSequencer.readAccountNumber();
         BankAccount expectedBankAccount = BankAccountDAO.getbankAccountList().get(0);
+        int expectedAccountNumber = AccountNumberSequencer.readAccountNumber();
+        int expectedCustomerId = CustomerIdSequencer.readCustomerId();
 
         //Assert
-        assertEquals(accountNumber, expectedBankAccount.getAccountNumber());
-        assertEquals(customerId, expectedBankAccount.getCustomerId());
+        assertEquals(expectedAccountNumber, expectedBankAccount.getAccountNumber());
+        assertEquals(expectedCustomerId, expectedBankAccount.getCustomerId());
         assertEquals(balance, expectedBankAccount.getBalance());
     }
 
@@ -49,8 +49,7 @@ class BankAccountDAOTest {
         BankAccountDAO.addBankAccountToList(bankAccount2);
         BankAccountDAO.addBankAccountToList(bankAccount3);
 
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-        BankAccount expectedBankAccount = bankAccountDAO.searchByAccountNumber(bankAccount2.getAccountNumber());
+        BankAccount expectedBankAccount = BankAccountDAO.searchByAccountNumber(bankAccount2.getAccountNumber());
 
         // Assert
         assertEquals(bankAccount2, expectedBankAccount);
@@ -68,8 +67,7 @@ class BankAccountDAOTest {
         BankAccountDAO.addBankAccountToList(bankAccount2);
         BankAccountDAO.addBankAccountToList(bankAccount3);
 
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-        BankAccount expectedBankAccount = bankAccountDAO.searchByAccountNumber(5);
+        BankAccount expectedBankAccount = BankAccountDAO.searchByAccountNumber(5);
 
         // Assert
         assertNull(expectedBankAccount);
@@ -87,8 +85,7 @@ class BankAccountDAOTest {
         BankAccountDAO.addBankAccountToList(bankAccount2);
         BankAccountDAO.addBankAccountToList(bankAccount3);
 
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-        boolean accountRemoved = bankAccountDAO.bankAccountIsRemoved(bankAccount3.getAccountNumber());
+        boolean accountRemoved = BankAccountDAO.bankAccountIsRemoved(bankAccount3.getAccountNumber());
 
         // Assert
         assertTrue(accountRemoved);
@@ -106,8 +103,7 @@ class BankAccountDAOTest {
         BankAccountDAO.addBankAccountToList(bankAccount2);
         BankAccountDAO.addBankAccountToList(bankAccount3);
 
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-        boolean accountRemoved = bankAccountDAO.bankAccountIsRemoved(8);
+        boolean accountRemoved = BankAccountDAO.bankAccountIsRemoved(8);
 
         // Assert
         assertFalse(accountRemoved);

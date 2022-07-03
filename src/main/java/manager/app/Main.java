@@ -8,42 +8,45 @@ import manager.app.model.Customer;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(" Bank Management App Demo \n");
+        System.out.println("Bank Account Management Application Demo \n");
+
+        Customer customer = CustomerDAO.createCustomer("Chris", "Lucky", "cl@email.com");
+        BankAccountDAO.createBankAccount(customer, 100);
+        BankAccountDAO.createBankAccount(customer, 300);
+        BankAccountDAO.createBankAccount(customer, 100);
+
+        System.out.println("This customer's information is:");
+        System.out.println(customer.getCustomerInformation());
 
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-
-        Customer customerA = customerDAO.createCustomer("Chris", "Lucky", "cl@email.com");
-        BankAccount accountA_1 = bankAccountDAO.createBankAccount(customerA.getId(), 100);
-        customerA.addAccountToList(accountA_1);
-        BankAccount accountA_2 = bankAccountDAO.createBankAccount(customerA.getId(), 300);
-        customerA.addAccountToList(accountA_2);
-        BankAccount accountA_3 = bankAccountDAO.createBankAccount(customerA.getId(), 1000);
-        customerA.addAccountToList(accountA_3);
-
-        for(BankAccount bankAccount : customerA.getBankAccountList()){
-            System.out.println("account No. " + bankAccount.getAccountNumber());
+        for(int i = 0; i < customer.getBankAccountList().size(); i++){
+            System.out.println("account number of customer's account " + (i + 1) + " is: " + customer.getBankAccountList().get(i).getAccountNumber());
         }
-        System.out.println(customerA.getCustomerInformation());
-
+        System.out.println("");
 
         double accBalance;
 
-        accBalance = customerA.getBankAccountList().get(0).getBalance();
-        System.out.println("Account balance of first is " + accBalance);
+        accBalance = customer.getBankAccountList().get(0).getBalance();
+        System.out.println("Account balance of customer's first account is " + accBalance + "kr");
 
-        accBalance = customerA.getBankAccountList().get(0).withdraw(30);
-        System.out.println("Account balance after  withdrawal is " + accBalance);
+        accBalance = customer.getBankAccountList().get(0).withdraw(30);
+        System.out.println("Account balance of customer's first account after withdrawal is " + accBalance+ "kr");
 
-        accBalance = customerA.getBankAccountList().get(0).withdraw(50);
-        System.out.println("Account balance after  another withdrawal is " + accBalance);
+        accBalance = customer.getBankAccountList().get(0).withdraw(50);
+        System.out.println("Account balance of customer's first account after another withdrawal is " + accBalance+ "kr");
 
-        accBalance = customerA.getBankAccountList().get(1).getBalance();
-        System.out.println("\nAccount balance of second account is " + accBalance);
+        customer.getBankAccountList().get(0).depositFund(100);
+        accBalance = customer.getBankAccountList().get(0).getBalance();
+        System.out.println("Account balance of customer's first account after a deposit " + accBalance+ "kr");
 
-        accBalance = customerA.getBankAccountList().get(2).getBalance();
-        System.out.println("\nAccount balance of third account is " + accBalance);
+        accBalance = customer.getBankAccountList().get(1).getBalance();
+        System.out.println("\nAccount balance of Customer's second account is " + accBalance+ "kr");
 
+        customer.getBankAccountList().get(1).depositFund(200);
+        accBalance = customer.getBankAccountList().get(1).getBalance();
+        System.out.println("Account balance of customer's second account after a deposit " + accBalance+ "kr");
+
+        accBalance = customer.getBankAccountList().get(2).getBalance();
+        System.out.println("\nAccount balance of Customer's third account is " + accBalance+ "kr");
     }
 }

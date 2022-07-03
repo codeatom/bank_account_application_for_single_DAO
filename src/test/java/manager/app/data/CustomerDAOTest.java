@@ -9,8 +9,8 @@ class CustomerDAOTest {
 
     @BeforeEach
     void setup(){
-        AccountNumberSequencer.resetNumber();
-        CustomerIdSequencer.resetId();
+        AccountNumberSequencer.resetAccountNumber();
+        CustomerIdSequencer.resetCustomerId();
         CustomerDAO.resetCustomerList();
         CustomerDAO.resetcustomerEmailList();
     }
@@ -23,15 +23,12 @@ class CustomerDAOTest {
         String email = "cl@email.com";
 
         //Act
-        CustomerDAO customerDAO = new CustomerDAO();
-        customerDAO.createCustomer(firstName, lastName, email);
-
-        Customer expectedCustumer = CustomerDAO.getCustomerList().get(0);
+        Customer customer = CustomerDAO.createCustomer(firstName, lastName, email);
 
         //Assert
-        assertEquals(email, expectedCustumer.getEmail());
-        assertEquals(lastName, expectedCustumer.getLastName());
-        assertEquals(firstName, expectedCustumer.getFirstName());
+        assertEquals(firstName, customer.getFirstName());
+        assertEquals(lastName, customer.getLastName());
+        assertEquals(email, customer.getEmail());
     }
 
     @Test
@@ -45,9 +42,7 @@ class CustomerDAOTest {
         CustomerDAO.addEmailToList("D@email.com");
         CustomerDAO.addEmailToList("E@email.com");
 
-        CustomerDAO customerDAO = new CustomerDAO();
-
-        boolean emailIsValid = customerDAO.emailIsUnique("uniqueEmail@email.com");
+        boolean emailIsValid = CustomerDAO.emailIsUnique("uniqueEmail@email.com");
 
         //Assert
         assertTrue(emailIsValid);
@@ -64,8 +59,7 @@ class CustomerDAOTest {
         CustomerDAO.addEmailToList("D@email.com");
         CustomerDAO.addEmailToList("nonUnique@email.com");
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        boolean emailIsValid = customerDAO.emailIsUnique("nonUnique@email.com");
+        boolean emailIsValid = CustomerDAO.emailIsUnique("nonUnique@email.com");
 
         //Assert
         assertFalse(emailIsValid);
@@ -83,8 +77,7 @@ class CustomerDAOTest {
         CustomerDAO.addCustomerToList(customer2);
         CustomerDAO.addCustomerToList(customer3);
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        Customer expectedCustomer = customerDAO.searchById(customer3.getId());
+        Customer expectedCustomer = CustomerDAO.searchById(customer3.getId());
 
         // Assert
         assertEquals(customer3, expectedCustomer);
@@ -102,8 +95,7 @@ class CustomerDAOTest {
         CustomerDAO.addCustomerToList(customer2);
         CustomerDAO.addCustomerToList(customer3);
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        Customer expectedCustomer = customerDAO.searchById(100);
+        Customer expectedCustomer = CustomerDAO.searchById(100);
 
         // Assert
         assertNull(expectedCustomer);
@@ -121,8 +113,7 @@ class CustomerDAOTest {
         CustomerDAO.addCustomerToList(customer2);
         CustomerDAO.addCustomerToList(customer3);
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        boolean custumerRemodved = customerDAO.customerIsRemoved(customer2.getId());
+        boolean custumerRemodved = CustomerDAO.customerIsRemoved(customer2.getId());
 
         // Assert
         assertTrue(custumerRemodved);
@@ -140,8 +131,7 @@ class CustomerDAOTest {
         CustomerDAO.addCustomerToList(customer2);
         CustomerDAO.addCustomerToList(customer3);
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        boolean custumerRemodved = customerDAO.customerIsRemoved(100);
+        boolean custumerRemodved = CustomerDAO.customerIsRemoved(100);
 
         // Assert
         assertFalse(custumerRemodved);

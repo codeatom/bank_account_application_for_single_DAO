@@ -1,17 +1,17 @@
 package manager.app.data;
 
 public class CustomerIdSequencer {
-    private static int id = 0;
+    private static int customerId = 0;
 
-    public static int readId() {
-        return id;
+    public static int readCustomerId() {
+        return customerId;
     }
 
     public static int nextCustomerId(){
-        return ++id;
+        return ++customerId;
     }
 
-    public static int resetId(){
-        return id = 0;
+    public static int resetCustomerId(){
+        return customerId = 0;
     }
 }

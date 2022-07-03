@@ -54,7 +54,7 @@ public class Customer {
     }
 
     public String getCustomerInformation(){
-        return  "id: " + this.id +"\n"
+        return  "Customer id: " + this.id +"\n"
                 + "First Name: " + this.firstName +"\n"
                 + "Last Name: " + this.lastName +"\n"
                 + "email: " + this.email +"\n";

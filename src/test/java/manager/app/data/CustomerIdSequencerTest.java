@@ -10,34 +10,47 @@ class CustomerIdSequencerTest {
     @Test
     void Should_Return_Sequential_int() {
         //Arrange
-        int id = 0;
         int expectedId = 4;
 
         //Act
-        id = CustomerIdSequencer.nextCustomerId();
-        id = CustomerIdSequencer.nextCustomerId();
-        id = CustomerIdSequencer.nextCustomerId();
-        id = CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
 
         //Assert
-        assertEquals(expectedId, id);
+        assertEquals(expectedId, CustomerIdSequencer.readCustomerId());
     }
 
     @Test
-    void should_Reset_Id_To_Zero() {
+    void should_Reset_Customer_Id_To_Zero() {
         //Arrange
-        int id = 0;
         int expectedId = 0;
 
         //Act
-        id = CustomerIdSequencer.nextCustomerId();
-        id = CustomerIdSequencer.nextCustomerId();
-        id = CustomerIdSequencer.nextCustomerId();
-        id = CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
 
-        id = CustomerIdSequencer.resetId();
+        CustomerIdSequencer.resetCustomerId();
 
         //Assert
-        assertEquals(expectedId, id);
+        assertEquals(expectedId, CustomerIdSequencer.readCustomerId());
+    }
+
+    @Test
+    void Should_Read_And_Return_Customer_Id() {
+        //Arrange
+        int expectedId = 3;
+        CustomerIdSequencer.resetCustomerId();
+
+        //Act
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+        CustomerIdSequencer.nextCustomerId();
+
+        //Assert
+        assertEquals(expectedId, CustomerIdSequencer.readCustomerId());
     }
 }

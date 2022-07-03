@@ -1,6 +1,9 @@
 package manager.app.data;
 
 import manager.app.model.BankAccount;
+import manager.app.model.Customer;
+import manager.app.data.CustomerDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,22 +15,26 @@ public class BankAccountDAO {
     }
 
     public static void addBankAccountToList(BankAccount bankAccount) {
-        BankAccountDAO.bankAccountList.add(bankAccount);
+        bankAccountList.add(bankAccount);
     }
 
     public static void resetBankAccountList() {
         BankAccountDAO.bankAccountList.clear();
     }
 
-    public BankAccount createBankAccount(int customerId, double balance){
-        BankAccount bankAccount = new BankAccount(customerId, balance);
-        BankAccountDAO.bankAccountList.add(bankAccount);
+    public static BankAccount createBankAccount(Customer customer, double balance){
+        BankAccount bankAccount = new BankAccount(customer.getId(), balance);
+
+        customer.addAccountToList(bankAccount);
+
+        CustomerDAO.addCustomerToList(customer);
+        BankAccountDAO.addBankAccountToList(bankAccount);
 
         return bankAccount;
     }
 
-    public BankAccount searchByAccountNumber(int accNumber){
-        for (BankAccount bankAccount : BankAccountDAO.bankAccountList) {
+    public static BankAccount searchByAccountNumber(int accNumber){
+        for (BankAccount bankAccount : bankAccountList) {
             if(accNumber == bankAccount.getAccountNumber()){
                 return bankAccount;
             }
@@ -36,10 +43,10 @@ public class BankAccountDAO {
         return null;
     }
 
-    public boolean bankAccountIsRemoved(int accNumber){
-        for (BankAccount bankAccount : BankAccountDAO.bankAccountList) {
+    public static boolean bankAccountIsRemoved(int accNumber){
+        for (BankAccount bankAccount : bankAccountList) {
             if(accNumber == bankAccount.getAccountNumber()){
-                return BankAccountDAO.bankAccountList.remove(bankAccount);
+                return bankAccountList.remove(bankAccount);
             }
         }
 

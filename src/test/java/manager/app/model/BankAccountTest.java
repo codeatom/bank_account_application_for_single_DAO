@@ -10,7 +10,7 @@ class BankAccountTest {
 
     @BeforeEach
     void setup(){
-        AccountNumberSequencer.resetNumber();
+        AccountNumberSequencer.resetAccountNumber();
     }
 
     @Test
