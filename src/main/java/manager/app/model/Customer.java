@@ -49,7 +49,15 @@ public class Customer {
     }
 
     public List<BankAccount> getBankAccountList() {
-        return bankAccountList;
+        return new ArrayList<>(bankAccountList);
+    }
+
+    public boolean addAccountToList(BankAccount account){
+        return this.bankAccountList.add(account);
+    }
+
+    public boolean removeAccountFromList(BankAccount account){
+        return this.bankAccountList.remove(account);
     }
 
     public String getCustomerInformation(){
@@ -64,7 +72,4 @@ public class Customer {
         return getCustomerInformation();
     }
 
-    public boolean addAccountToList(BankAccount account){
-        return this.bankAccountList.add(account);
-    }
 }

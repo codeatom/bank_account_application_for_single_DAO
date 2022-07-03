@@ -53,4 +53,19 @@ public class BankAccountDAO {
         return false;
     }
 
+    public static boolean closeAccount(Customer customer, int accNumber){
+        for (BankAccount bankAccount : customer.getBankAccountList()) {
+            if(accNumber == bankAccount.getAccountNumber()){
+                bankAccount.withdraw(bankAccount.getBalance());
+
+                customer.removeAccountFromList(bankAccount);
+                bankAccountList.remove(bankAccount);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

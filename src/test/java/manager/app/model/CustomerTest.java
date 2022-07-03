@@ -164,4 +164,24 @@ class CustomerTest {
         //Assert
         assertTrue(accountAdded);
     }
+
+    @Test
+    void should_Remove_Bank_Account_From_Customer_AccountList() {
+        String firstName = "Chris";
+        String lastName = "Lucky";
+        String email = "cl@email.com";
+
+        int customerId = 1;
+        double accountBalance = 10;
+
+        //Act
+        Customer customer = new Customer(firstName, lastName, email);
+        BankAccount bankAccount = new BankAccount(customerId, accountBalance);
+        customer.addAccountToList(bankAccount);
+
+        boolean accountRemoved = customer.removeAccountFromList(bankAccount);
+
+        //Assert
+        assertTrue(accountRemoved);
+    }
 }

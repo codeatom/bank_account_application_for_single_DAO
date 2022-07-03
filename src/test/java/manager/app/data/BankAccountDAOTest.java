@@ -108,4 +108,26 @@ class BankAccountDAOTest {
         // Assert
         assertFalse(accountRemoved);
     }
+
+    @Test
+    void should_Remove_A_Bank_Account_From_Customer_AccountList_And_CustomerDAO_AccountList() {
+        ///Arrange
+        String firstName = "Chris";
+        String lastName = "Lucky";
+        String email = "cl@email.com";
+
+        BankAccount bankAccount = new BankAccount(1, 10);
+
+
+        //Act
+        Customer customer = new Customer(firstName, lastName, email);
+
+        customer.addAccountToList(bankAccount);
+        BankAccountDAO.addBankAccountToList(bankAccount);
+
+        boolean accountRemoved = BankAccountDAO.closeAccount(customer, bankAccount.getAccountNumber());
+
+        // Assert
+        assertTrue(accountRemoved);
+    }
 }
