@@ -12,7 +12,7 @@ class CustomerDAOTest {
         AccountNumberSequencer.resetAccountNumber();
         CustomerIdSequencer.resetCustomerId();
         CustomerDAO.resetCustomerList();
-        CustomerDAO.resetcustomerEmailList();
+        CustomerDAO.resetCustomerEmailList();
     }
 
     @Test
@@ -113,10 +113,10 @@ class CustomerDAOTest {
         CustomerDAO.addCustomerToList(customer2);
         CustomerDAO.addCustomerToList(customer3);
 
-        boolean custumerRemodved = CustomerDAO.customerIsRemoved(customer2.getId());
+        boolean customerRemoved = CustomerDAO.removeCustomerFromList(customer2.getId());
 
         // Assert
-        assertTrue(custumerRemodved);
+        assertTrue(customerRemoved);
     }
 
     @Test
@@ -131,9 +131,9 @@ class CustomerDAOTest {
         CustomerDAO.addCustomerToList(customer2);
         CustomerDAO.addCustomerToList(customer3);
 
-        boolean custumerRemodved = CustomerDAO.customerIsRemoved(100);
+        boolean customerRemoved = CustomerDAO.removeCustomerFromList(100);
 
         // Assert
-        assertFalse(custumerRemodved);
+        assertFalse(customerRemoved);
     }
 }

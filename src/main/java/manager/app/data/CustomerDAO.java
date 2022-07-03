@@ -28,7 +28,7 @@ public class CustomerDAO {
         customerList.clear();
     }
 
-    public static void resetcustomerEmailList() {
+    public static void resetCustomerEmailList() {
         customerEmailList.clear();
     }
 
@@ -60,7 +60,7 @@ public class CustomerDAO {
         return null;
     }
 
-    public static boolean customerIsRemoved(int customerId){
+    public static boolean removeCustomerFromList(int customerId){
         for (Customer customer : customerList) {
             if(customerId == customer.getId()){
                 return customerList.remove(customer);

@@ -10,7 +10,7 @@ import java.util.List;
 public class BankAccountDAO {
     private static final List<BankAccount> bankAccountList = new ArrayList<>();
 
-    public static List<BankAccount> getbankAccountList() {
+    public static List<BankAccount> getBankAccountList() {
         return new ArrayList<>(BankAccountDAO.bankAccountList);
     }
 
@@ -43,7 +43,7 @@ public class BankAccountDAO {
         return null;
     }
 
-    public static boolean bankAccountIsRemoved(int accNumber){
+    public static boolean removeAccountFromList(int accNumber){
         for (BankAccount bankAccount : bankAccountList) {
             if(accNumber == bankAccount.getAccountNumber()){
                 return bankAccountList.remove(bankAccount);

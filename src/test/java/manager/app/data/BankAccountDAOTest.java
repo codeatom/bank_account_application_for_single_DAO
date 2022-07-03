@@ -14,7 +14,7 @@ class BankAccountDAOTest {
         AccountNumberSequencer.resetAccountNumber();
         CustomerIdSequencer.resetCustomerId();
         CustomerDAO.resetCustomerList();
-        CustomerDAO.resetcustomerEmailList();
+        CustomerDAO.resetCustomerEmailList();
         BankAccountDAO.resetBankAccountList();
     }
 
@@ -27,7 +27,7 @@ class BankAccountDAOTest {
         Customer customer = new Customer("Christopher", "Lucky", "cl@email.com");
         BankAccountDAO.createBankAccount(customer, balance);
 
-        BankAccount expectedBankAccount = BankAccountDAO.getbankAccountList().get(0);
+        BankAccount expectedBankAccount = BankAccountDAO.getBankAccountList().get(0);
         int expectedAccountNumber = AccountNumberSequencer.readAccountNumber();
         int expectedCustomerId = CustomerIdSequencer.readCustomerId();
 
@@ -85,7 +85,7 @@ class BankAccountDAOTest {
         BankAccountDAO.addBankAccountToList(bankAccount2);
         BankAccountDAO.addBankAccountToList(bankAccount3);
 
-        boolean accountRemoved = BankAccountDAO.bankAccountIsRemoved(bankAccount3.getAccountNumber());
+        boolean accountRemoved = BankAccountDAO.removeAccountFromList(bankAccount3.getAccountNumber());
 
         // Assert
         assertTrue(accountRemoved);
@@ -103,7 +103,7 @@ class BankAccountDAOTest {
         BankAccountDAO.addBankAccountToList(bankAccount2);
         BankAccountDAO.addBankAccountToList(bankAccount3);
 
-        boolean accountRemoved = BankAccountDAO.bankAccountIsRemoved(8);
+        boolean accountRemoved = BankAccountDAO.removeAccountFromList(8);
 
         // Assert
         assertFalse(accountRemoved);

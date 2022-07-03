@@ -1,7 +1,6 @@
 package manager.app.model;
 
 import manager.app.data.CustomerIdSequencer;
-
 import java.util.ArrayList;
 import java.util.List;
 
