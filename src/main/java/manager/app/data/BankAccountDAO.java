@@ -2,8 +2,6 @@ package manager.app.data;
 
 import manager.app.model.BankAccount;
 import manager.app.model.Customer;
-import manager.app.data.CustomerDAO;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +16,9 @@ public class BankAccountDAO {
         bankAccountList.add(bankAccount);
     }
 
-    public static void resetBankAccountList() {
-        BankAccountDAO.bankAccountList.clear();
-    }
+//    public static void resetBankAccountList() {
+//        BankAccountDAO.bankAccountList.clear();
+//    }
 
     public static BankAccount createBankAccount(Customer customer, double balance){
         BankAccount bankAccount = new BankAccount(customer.getId(), balance);

@@ -2,7 +2,6 @@ package manager.app;
 
 import manager.app.data.BankAccountDAO;
 import manager.app.data.CustomerDAO;
-import manager.app.model.BankAccount;
 import manager.app.model.Customer;
 
 public class Main {
